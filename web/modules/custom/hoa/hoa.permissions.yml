@@ -1,0 +1,4 @@
+access training content:
+  title: 'HOA Settings'
+  description: 'Access training content.'
+  restrict access: TRUE

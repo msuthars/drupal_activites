@@ -1,0 +1,27 @@
+uuid: 6977bb87-9820-43c2-96e2-4c3639940edd
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - user
+id: user.field_activity
+field_name: field_activity
+entity_type: user
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: food
+      label: Food
+    -
+      value: beverage
+      label: Beverage
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

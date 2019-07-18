@@ -1,0 +1,101 @@
+<?php
+/**
+ * @file
+ * Contains hoa.module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\hoa\Event\HoaCustomEvent;
+
+/**
+ * Implements hook_theme().
+ */
+function hoa_theme($existing, $type, $theme, $path) {
+  return [
+    'hoa-template' => [
+      'variables' => [
+        'weather_data' => [
+					'city' => NULL,
+          'temp_min' => NULL,
+          'temp_max' => NULL,
+          'pressure' => NULL,
+          'humidity' => NULL,
+          'wind' => [
+						'speed' => NULL,
+          ],
+        ],
+      ],
+		],
+		'hoa-article' => [
+      'variables' => [
+        'block_data' => [
+					'currentUserEmail' => NULL,
+					'article_titles' => NULL,
+				],
+      ],
+		],
+		'hoa-clock' => [
+      'variables' => [
+        'clock_data' => [
+					'date' => NULL,
+					'time' => NULL,
+					'timezone' => NULL,
+				],
+      ],
+		],
+		'youtube_link_formatter' => [
+      'variables' => ['url' => NULL],
+      'template' => 'youtube-link-formatter',
+		],
+  ];
+}
+
+/**
+ * Implements template_preprocess_page().
+ */
+function hoa_preprocess_page(&$variables) {
+	// Attach css to render a border on all the images appearing in website.
+	$variables['#attached']['library'][] = 'hoa/hoa_image';
+}
+
+/**
+ * Implements template_preprocess_block().
+ */
+function hoa_preprocess_block(&$variables) {
+  if (stristr($variables['elements']['#id'], 'rotator')) {
+    $variables['#attached']['library'][] = 'hoa/hoa_block_flip';
+  }
+}
+
+/**
+ * Implements template_preprocess_field().
+ */
+function hoa_preprocess_field(&$variables) {
+	// Add even/odd class in image items for rotator block type.
+	// Class even/odd used for flip image.
+	if ($variables['element']['#bundle'] == 'rotator' && $variables['element']['#field_type'] == 'image') {
+		for ($i = 0; $i < count($variables['items']); $i++) {
+			if (($i + 1) % 2 == 0) {
+				$variables['items'][$i]['attributes']->setAttribute('class', 'even');
+			}
+			else {
+				$variables['items'][$i]['attributes']->setAttribute('class', 'odd');
+			}
+		}
+	}
+}
+
+/*
+ * Implements hook_entity_insert().
+ */
+function hoa_entity_insert(EntityInterface $entity) {
+	// Send email to subscriber when new article is created.
+	if ($entity->getEntityTypeId() == 'node' && $entity->get('type')->getString() == 'article') {
+		\Drupal::service('hoa.subscriber_manager')->notifySubscribers();
+	}
+
+	// Dispatch Custom Event (node.insert).
+	$dispatcher = \Drupal::service('event_dispatcher');
+	$event = new HoaCustomEvent($entity);
+	$dispatcher->dispatch(HoaCustomEvent::NODE_INSERT, $event);
+}

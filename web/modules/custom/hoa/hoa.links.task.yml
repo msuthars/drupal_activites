@@ -1,0 +1,11 @@
+hoa.tab_1:
+  route_name : hoa.static_callback
+  title: Tab1
+  base_route: hoa.static_callback
+  weight: 10
+
+hoa.tab_2:
+  route_name : hoa.dynamic_callback
+  title: Tab2
+  base_route: hoa.static_callback
+  weight: 20

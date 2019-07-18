@@ -1,0 +1,95 @@
+hoa.static_callback:
+  path: '/static-content'
+  defaults:
+    _controller: '\Drupal\hoa\Controller\HoaController::staticCallback'
+    _title: 'Static Content Page'
+  requirements:
+    _permission: 'access training content'
+
+hoa.dynamic_callback:
+  path: '/arg-demo/{arg}'
+  defaults:
+    _controller: '\Drupal\hoa\Controller\HoaController::dynamicCallback'
+    _title: 'Dynamic Listing'
+    arg: 1
+  requirements:
+    _permission: 'access training content'
+
+hoa.node_details:
+  path: '/list/{node}'
+  defaults:
+    _controller: '\Drupal\hoa\Controller\HoaController::getNodeDetails'
+    _title: 'Node Details'
+    node2: NULL
+  requirements:
+    _custom_access_check: 'TRUE'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
+hoa.nodes_details:
+  path: '/list/{node1}/{node2}'
+  defaults:
+    _controller: '\Drupal\hoa\Controller\HoaController::getNodesDetails'
+    _title: 'Nodes Details'
+  requirements:
+    _custom_access: '\Drupal\hoa\Controller\HoaController::access'
+  options:
+    parameters:
+      node1:
+        type: entity:node
+      node2:
+        type: entity:node
+
+hoa.simple_form:
+  path: '/simple-form'
+  defaults:
+    _form: '\Drupal\hoa\Form\SimpleForm'
+    _title: 'Simple Form'
+  requirements:
+    _permission: 'access training content'
+
+hoa.dic_form:
+  path: '/dic-form'
+  defaults:
+    _form: '\Drupal\hoa\Form\DicForm'
+    _title: 'DIC Form'
+  requirements:
+    _permission: 'access training content'
+
+hoa.state_demo_form:
+  path: '/state-demo-form'
+  defaults:
+    _form: '\Drupal\hoa\Form\StateDemoForm'
+    _title: 'State Demo Form'
+  requirements:
+    _permission: 'access training content'
+  
+hoa.weather_config_form:
+  path: '/admin/weather-config'
+  defaults:
+    _form: '\Drupal\hoa\Form\WeatherConfigForm'
+    _title: 'Weather Config Form'
+  requirements:
+    _permission: 'access training content'
+  options:
+    _admin_route: TRUE
+
+hoa.nodes_json:
+  path: 'node/{node}/{api_key}'
+  defaults:
+    _controller: '\Drupal\hoa\Controller\HoaDemoController::getNodeJson'
+    _title: 'Node Json Details'
+  requirements:
+    _custom_access: '\Drupal\hoa\Controller\HoaDemoController::access'
+
+hoa.email_config_form:
+  path: '/admin/emails-config'
+  defaults:
+    _form: '\Drupal\hoa\Form\EmailConfigurationForm'
+    _title: 'Email Config Form'
+  requirements:
+    _permission: 'access training content'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,14 @@
+uuid: cc1d29e0-fa41-4a1a-95f1-1e6bec19afd8
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Website feedback'
+recipients:
+  - manish.kumar@qed42.com
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''

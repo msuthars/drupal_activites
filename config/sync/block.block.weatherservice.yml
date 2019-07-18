@@ -1,0 +1,21 @@
+uuid: 0856577c-4003-4d3b-b7b3-e216f93ea51d
+langcode: en
+status: true
+dependencies:
+  module:
+    - hoa
+  theme:
+    - bartik
+id: weatherservice
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: weather_block
+settings:
+  id: weather_block
+  label: 'Weather Service'
+  provider: hoa
+  label_display: visible
+  city_name: Pune
+visibility: {  }

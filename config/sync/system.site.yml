@@ -1,0 +1,15 @@
+uuid: 9c601cf5-b8d5-4029-a7a7-f141c23fc10f
+name: HOA
+mail: manish.kumar@qed42.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE
+apikey: TJbXH2XZcGZ0qndKvaLPipCgp26p1DS3

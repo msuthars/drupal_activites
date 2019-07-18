@@ -1,0 +1,74 @@
+<?php
+
+use Drupal\Core\Config\FileStorage;
+/**
+ * Implements hook_schema().
+ */
+function hoa_schema() {
+	$schema['d8_demo'] = [
+		'description' => 'The base table for DIC form data.',
+		'fields' => [
+			'id' => [
+				'description' => 'The primary identifier.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+			],
+			'email' => [
+				'description' => 'The Email.',
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => TRUE,
+				'default' => '',
+			],
+			'first_name' => [
+				'description' => 'The first name.',
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => TRUE,
+				'default' => '',
+			],
+			'last_name' => [
+				'description' => 'The last name.',
+				'type' => 'varchar',
+				'length' => 255,
+				'not null' => TRUE,
+				'default' => '',
+			],
+		],
+		'unique keys' => [
+			'id' => ['id'],
+		],
+		'primary key' => [
+			'id',
+		],
+	];
+	return $schema;
+}
+
+/**
+ * Install new content type 'event'.
+ */
+function hoa_update_8102() {
+	try {
+		$config_storage = \Drupal::service('config.storage');
+		$config_path = drupal_get_path('module', 'hoa') . '/config/install';
+		$config_source = new FileStorage($config_path);
+		$uuid_service = \Drupal::service('uuid');
+		$config_factory = \Drupal::configFactory();
+		$configs = [
+			'field.field.node.events.body',
+			'node.type.events',
+			'core.entity_form_display.node.events.default',
+			'core.entity_view_display.node.events.default',
+			'core.entity_view_display.node.events.teaser',
+		];
+		foreach ($configs as $config) {
+			$config_storage->write($config, $config_source->read($config));
+			$config_factory->getEditable($config)->set('uuid', $uuid_service->generate())->save();
+		}	
+	}
+	catch (Exception $e) {
+		\Drupal::logger('system')->log('error', 'Config Import Error:' . $e->getMessage());
+	}
+}

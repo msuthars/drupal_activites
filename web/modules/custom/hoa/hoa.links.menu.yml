@@ -1,0 +1,5 @@
+hoa.admin:
+  title: 'HOA Settings'
+  description: 'HOA Settings'
+  parent: system.admin_config
+  route_name: hoa.static_callback

@@ -1,0 +1,5 @@
+name: 'HOA Routing'
+description: 'Hands On Activity for Routing'
+package: Custom
+type: module
+core: 8.x

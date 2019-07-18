@@ -1,0 +1,49 @@
+services:
+  hoa.custom_access_check:
+    class: Drupal\hoa\Services\Access\CustomAccessCheck
+    arguments: ['@current_user']
+    tags:
+      - { name: access_check, applies_to: _custom_access_check }
+
+  hoa.form_data_manager:
+    class: Drupal\hoa\Services\Form\FormDataManager
+    arguments: ['@database']
+
+  hoa.weather_manager:
+    class: Drupal\hoa\Services\Weather\WeatherManager
+    arguments: ['@config.factory']
+
+  hoa.notifier:
+    class: Drupal\hoa\Services\Notifier\Notifier
+  
+  hoa.subscriber_manager:
+    class: Drupal\hoa\Services\Subscriber\SubscriberManager
+    arguments: ['@database', '@hoa.notifier', '@string_translation']
+
+  hoa.google_book_manager:
+    class: Drupal\hoa\Services\GoogleAPI\GoogleBookManager
+
+  hoa.hoa_event_subscriber:
+    class: Drupal\hoa\EventSubscriber\HoaEventSubscriber
+    tags:
+      - { name: 'event_subscriber' }
+
+  hoa.hoa_custom_event_subscriber:
+    class: Drupal\hoa\EventSubscriber\HoaCustomEventSubscriber
+    arguments: ['@logger.factory']
+    tags:
+      - { name: 'event_subscriber' }
+
+  hoa.clock_manager:
+    class: Drupal\hoa\Services\Clock\ClockManager
+
+  hoa.route_subscriber:
+    class: Drupal\hoa\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+
+  hoa.config_import_custom_event_subscriber:
+    class: Drupal\hoa\EventSubscriber\ModuleEnableNotifierSubscriber
+    arguments: ['@hoa.notifier', '@config.factory', '@string_translation']
+    tags:
+      - { name: 'event_subscriber' }

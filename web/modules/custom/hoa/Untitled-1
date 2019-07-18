@@ -1,0 +1,42 @@
+oops concept
+
+use
+To use namespace to define scope of that namespaces class.
+
+namespace
+Used to define scope of class/function/constant.
+
+interfaces
+It can only have abstract  methods (partial defined) only constant properties can define in it. Can not be initiated. Use of loss-coupling (reduce the dependancy of classes)
+
+access modifiers
+Public, private, protected, abstract, final.
+
+abstract class
+An abstract class can have full and partial(abstract method) implemented methods. It can not be initiated.
+
+
+traits
+Simple piece of code that can be used in class with code reusability purpose. It can not initiate. Overcome issue of multiple inheritance.
+
+psr-4 (php coding recommendation) & auto-loading
+It provide rules for auto loading and coding standards.
+
+Composer
+To add and manage dependancies in Drupal.
+
+
+multilingual
+Block configuration
+routing
+
+Jsonapi
+Rest api vs json api
+
+Config split module
+Acquia cloud factory
+
+Should I need to create custom block for show filter block?
+Currently I added filter block with facets with aggregation by concat two fields.
+How elevate query works? By my understanding I need to create an elevate.xml file for it.
+If this not correct way please elaborate about it. 

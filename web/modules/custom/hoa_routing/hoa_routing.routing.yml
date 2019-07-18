@@ -1,0 +1,57 @@
+# Basic Controller Routing.
+hoa_routing.test_page:
+  path: 'test-page'
+  defaults:
+    _controller: '\Drupal\hoa_routing\Controller\BasicController::testPage'
+  requirements:
+    _permission: 'access content'
+
+# Simple form Routing.
+hoa_routing.test_form:
+  path: 'test-form'
+  defaults:
+    _form: '\Drupal\hoa_routing\Form\TestForm'
+  requirements:
+    _permission: 'access content'
+
+# Entity List Routing.
+hoa_routing.test_node_list:
+  path: 'test-node-list'
+  defaults:
+    _entity_list: 'node'
+  requirements:
+    _permission: 'access content'
+
+# Entity Form Routing. Not working.
+hoa_routing.test_node_form:
+  path: 'test-node-form/{node}'
+  defaults:
+    _entity_form: 'node.default'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node:
+        entity: 'entity:node'
+
+# Simple arguments passing to controller function.
+hoa_routing.test_params:
+  path: 'test-params/{arg1}/{arg2}' 
+  defaults:
+    _controller: '\Drupal\hoa_routing\Controller\SimpleArgController::testArgFun'
+  requirements:
+    _permission: 'access content'
+
+# Get loaded entity by arg.
+# we have to simply add entity name as argument.
+hoa_routing.test_params_node:
+  path: 'test-params-node/{node}' 
+  defaults:
+    _controller: '\Drupal\hoa_routing\Controller\SimpleArgController::testNodeArg'
+  requirements:
+    _permission: 'access content'
+
+# Dynamic Routing.
+route_callbacks:
+  - '\Drupal\hoa_routing\Controller\BasicController::routes'
+  
