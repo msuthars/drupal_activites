@@ -1,0 +1,30 @@
+id: categories
+label: 'Import Article Category'
+status: true
+migration_group: hoa
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  headers:
+    Content-Type: text/xml
+  urls: 'http://localhost:8888/migration_xmls/categories.xml'
+  data_parser_plugin: simple_xml
+  item_selector: category
+  fields:
+    -
+      name: id
+      label: Article Category Id
+      selector: id
+    -
+      name: category_name
+      label: Article Category Name
+      selector: name
+  ids:
+    id:
+      type: string
+process:
+  tid: id
+  name: category_name
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: article_category

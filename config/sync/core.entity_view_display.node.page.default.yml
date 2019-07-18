@@ -1,0 +1,40 @@
+uuid: 0633d860-fc2c-4f62-a100-1ad3a844ba41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.page.body
+    - field.field.node.page.field_youtube_video
+    - node.type.page
+  module:
+    - hoa
+    - text
+    - user
+_core:
+  default_config_hash: g1S3_GLaxq4l3I9RIca5Mlz02MxI2KmOquZpHw59akM
+id: node.page.default
+targetEntityType: node
+bundle: page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_youtube_video:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: youtube_video
+    region: content
+  links:
+    weight: 101
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

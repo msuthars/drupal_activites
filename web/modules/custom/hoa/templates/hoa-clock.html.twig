@@ -1,0 +1,23 @@
+{#
+/**
+ * @file hoa-clock.html.twig
+ * Default theme implementation to present Sites data.
+ *
+ * This template is used when viewing Time Details.
+ *
+ *
+ * Available variables:
+ * - clock_data: Array variable that contains Clock details.
+ *
+ * @see template_preprocess_sites()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="clock-wrapper">
+	<div class="clock_data">
+    <span class="date">{{ 'Date'|t }} : {{ clock_data.date }}</span>
+    <span class="time">{{ 'Time'|t }} : {{ clock_data.time }}</span>
+    <span class="timezone">{{ 'TimeZone'|t }} : {{ clock_data.timezone }}</span>
+	</div>
+</div>

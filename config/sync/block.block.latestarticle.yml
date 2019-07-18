@@ -1,0 +1,20 @@
+uuid: 2e52b6b1-cfb4-4a2c-918b-4d2494f32df1
+langcode: en
+status: true
+dependencies:
+  module:
+    - hoa
+  theme:
+    - bartik
+id: latestarticle
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: latest_article_block
+settings:
+  id: latest_article_block
+  label: 'Latest Article'
+  provider: hoa
+  label_display: visible
+visibility: {  }

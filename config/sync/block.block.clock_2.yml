@@ -1,0 +1,21 @@
+uuid: 016173d4-a9a1-40fc-b6ff-7272896474bb
+langcode: en
+status: true
+dependencies:
+  module:
+    - hoa
+  theme:
+    - bartik
+id: clock_2
+theme: bartik
+region: sidebar_second
+weight: -9
+provider: null
+plugin: clock_block
+settings:
+  id: clock_block
+  label: 'Clock (EST)'
+  provider: hoa
+  label_display: visible
+  clock_timezone: est
+visibility: {  }

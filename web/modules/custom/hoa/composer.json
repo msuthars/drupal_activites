@@ -1,0 +1,12 @@
+{
+	"name": "antoineaugusti/google-books",
+	"description": "Simple Google Books API client",
+	"type": "library",
+	"require": {
+			"guzzlehttp/guzzle": "^6.2"
+	},
+	"require-dev":{
+		"phpunit/phpunit": "^4.8"
+	},
+	"minimum-stability": "stable"
+}

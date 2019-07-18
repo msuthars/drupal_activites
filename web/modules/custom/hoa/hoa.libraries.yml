@@ -1,0 +1,25 @@
+weather_block:
+  version: VERSION
+  css:
+    theme:
+      css/weather_block.css: {}
+
+hoa_image:
+  version: VERSION
+  css:
+    theme:
+      css/hoa_image.css: {}
+
+hoa_block_flip:
+  version: VERSION
+  js:
+    https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js: {type: external, minified: true}
+    js/hoa_block.js: {}
+  dependencies:
+    - core/jquery
+
+clock_block:
+  version: VERSION
+  css:
+    theme:
+      css/clock_block.css: {}

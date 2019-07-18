@@ -1,0 +1,33 @@
+{#
+/**
+ * @file hoa-article.html.twig
+ * Default theme implementation to present Sites data.
+ *
+ * This template is used when viewing Weather Details.
+ *
+ *
+ * Available variables:
+ * - article_titles: Array variable that contains article titles.
+ *
+ * @see template_preprocess_sites()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="article-title-wrapper">
+	{% if block_data.currentUserEmail is defined and block_data.currentUserEmail is not null and block_data.currentUserEmail %}
+		{{ 'Email'|t }} : {{ block_data.currentUserEmail  }}
+	{% else %}
+		{{ 'User is not logged in or not found.'|t }}
+	{% endif %}
+
+	{% if block_data.article_titles is defined and block_data.article_titles is not null %}
+	<ul>
+		{% for title in block_data.article_titles %}
+			<li>{{ title }}</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+		{{ 'Article Not Found.'|t }}
+	{% endif %}
+</div>

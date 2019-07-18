@@ -1,0 +1,8 @@
+name: 'HOA Migration'
+description: 'Hands On Activities (Migration)'
+package: Custom
+type: module
+core: 8.x
+dependencies:
+  - migrate_plus
+  - migrate_tools

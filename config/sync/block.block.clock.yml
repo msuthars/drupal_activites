@@ -1,0 +1,21 @@
+uuid: cd52b866-9e37-4446-8f8f-a11295e89ac6
+langcode: en
+status: true
+dependencies:
+  module:
+    - hoa
+  theme:
+    - bartik
+id: clock
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: clock_block
+settings:
+  id: clock_block
+  label: 'Clock (UTC)'
+  provider: hoa
+  label_display: visible
+  clock_timezone: utc
+visibility: {  }

@@ -1,0 +1,12 @@
+img {
+    border:2px solid #021a40;
+}
+
+.site-branding__logo img {
+  border: none;
+}
+
+div[id^="block-rotator"] img {
+  width: 700px;
+  height: 400px;
+}

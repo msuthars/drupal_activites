@@ -1,0 +1,21 @@
+uuid: 94be8d04-9b03-404d-9e5b-4e1038bfde45
+langcode: en
+status: true
+dependencies:
+  module:
+    - hoa
+  theme:
+    - bartik
+id: googlebook
+theme: bartik
+region: sidebar_second
+weight: -10
+provider: null
+plugin: google_book_block
+settings:
+  id: google_book_block
+  label: 'Google Book'
+  provider: hoa
+  label_display: visible
+  google_book_isbn: '9780142181119'
+visibility: {  }

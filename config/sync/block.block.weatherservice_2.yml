@@ -1,0 +1,21 @@
+uuid: 57b34456-e7db-4071-b082-e671c746dcf1
+langcode: en
+status: true
+dependencies:
+  module:
+    - hoa
+  theme:
+    - bartik
+id: weatherservice_2
+theme: bartik
+region: sidebar_second
+weight: 0
+provider: null
+plugin: weather_block
+settings:
+  id: weather_block
+  label: 'Weather Service'
+  provider: hoa
+  label_display: visible
+  city_name: Ahmedabad
+visibility: {  }

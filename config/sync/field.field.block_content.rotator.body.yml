@@ -1,0 +1,22 @@
+uuid: e2126163-ead1-4c8b-87e9-1a77a85d6eba
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.rotator
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.rotator.body
+field_name: body
+entity_type: block_content
+bundle: rotator
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

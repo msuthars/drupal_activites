@@ -1,0 +1,8 @@
+.clock-wrapper {
+  background: #000000;
+  color: #ffffff;
+}
+
+.clock-wrapper .clock_data span {
+  display: block;
+}

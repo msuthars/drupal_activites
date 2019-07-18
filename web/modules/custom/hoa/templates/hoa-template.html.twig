@@ -1,0 +1,38 @@
+{#
+/**
+ * @file hoa-template.html.twig
+ * Default theme implementation to present Sites data.
+ *
+ * This template is used when viewing Weather Details.
+ *
+ *
+ * Available variables:
+ * - weather_data: Array variable that contains Weather details.
+ *
+ * @see template_preprocess_sites()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="temperature-wrapper">
+	<div class="temperature">
+		<div class="temp">
+			<span class="min">{{ 'City'|t }} : {{ weather_data.city }}</span>
+		</div>
+		<div class="temp">
+			<span class="min">{{ 'Minimum temperature'|t }} : {{ weather_data.temp_min }}</span>
+		</div>
+		<div class="temp">
+			<span class="max">{{ 'Maximum temperature'|t }} : {{ weather_data.temp_max }}</span>
+		</div>
+		<div class="temp">
+			<span class="pressure">{{ 'Pressure'|t }} : {{ weather_data.pressure }}</span>
+		</div>
+		<div class="temp">
+			<span class="humidity">{{ 'Humidity'|t }} : {{ weather_data.humidity }}</span>
+		</div>
+		<div class="temp">
+			<span class="wind">{{ 'Wind Speed'|t }} : {{ weather_data.wind.speed }}</span>
+		</div>
+	</div>
+</div>

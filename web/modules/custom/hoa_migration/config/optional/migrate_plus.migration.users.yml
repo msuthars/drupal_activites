@@ -1,0 +1,34 @@
+id: users
+label: 'Import Users'
+status: true
+migration_group: hoa
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  headers:
+    Content-Type: text/xml
+  urls: 'http://localhost:8888/migration_xmls/users.xml'
+  data_parser_plugin: simple_xml
+  item_selector: user
+  fields:
+    -
+      name: id
+      label: User Id
+      selector: id
+    -
+      name: user_name
+      label: User Name
+      selector: name
+    -
+      name: user_email
+      label: User Email
+      selector: email
+  ids:
+    id:
+      type: string
+process:
+  uid: id
+  name: user_name
+  mail: user_email
+destination:
+  plugin: entity:user
