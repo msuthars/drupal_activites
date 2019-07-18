@@ -23,10 +23,6 @@ hoa.node_details:
     node2: NULL
   requirements:
     _custom_access_check: 'TRUE'
-  options:
-    parameters:
-      node:
-        type: entity:node
 
 hoa.nodes_details:
   path: '/list/{node1}/{node2}'

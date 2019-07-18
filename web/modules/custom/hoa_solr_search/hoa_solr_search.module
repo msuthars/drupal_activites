@@ -1,0 +1,54 @@
+<?php
+
+use Drupal\search_api\IndexInterface;
+
+/**
+ * Alter Solr documents before they are sent to Solr for indexing.
+ *
+ * @param \Solarium\QueryType\Update\Query\Document\Document[] $documents
+ *   An array of \Solarium\QueryType\Update\Query\Document\Document objects
+ *   ready to be indexed, generated from $items array.
+ * @param \Drupal\search_api\IndexInterface $index
+ *   The search index for which items are being indexed.
+ */
+function hoa_solr_search_search_api_solr_documents_alter(array &$documents, IndexInterface $index, array $items) {
+  // Adds a "foo" field with value "bar" to all documents.
+  foreach ($documents as $document) {
+    $color_label = isset($document->getFields()['ss_field_color_label']) ? $document->getFields()['ss_field_color_label'] : '';
+    $rgb_code = isset($document->getFields()['ss_field_rgb_code']) ? $document->getFields()['ss_field_rgb_code'] : '';
+    if (!empty($color_label) && !empty($rgb_code)) {
+      $document->setField('ss_field_color_label', $rgb_code . '|' . $color_label);
+    }
+  }
+}
+
+/**
+ * Implements hook_search_api_solr_query_alter().
+ *
+ */
+function hoa_solr_search_search_api_solr_query_alter(\Solarium\Core\Query\QueryInterface $solarium_query, \Drupal\search_api\Query\QueryInterface $query) {
+  $index = $query->getIndex();
+  $fields = $index->getServerInstance()->getBackend()->getSolrFieldNames($index);
+  // Boosting product_use field.
+  $solr_field = !empty($fields['product_use']) ? $fields['product_use'] : '';
+  if ($solr_field) {
+    $edismax = $solarium_query->getEDisMax();
+    $boosting_fields = explode(' ', $edismax->getQueryFields());
+    $boosting_fields[] = $solr_field . '^13';
+    $edismax->setQueryFields(implode(' ', $boosting_fields));
+  }
+}
+
+
+/**
+ * Implements template_preprocess_block().
+ */
+function hoa_solr_search_preprocess_block(&$variables) {
+  // Change label of facet filter according custom index value.
+  if ($variables['base_plugin_id'] == 'facet_block' && $variables['derivative_plugin_id'] == 'color_label') {
+    foreach ($variables['elements']['content'][0]['#items'] as $item_key => $item) {
+      list($rgb_code, $color_label) = explode('|', $item['#title']['#value']);
+      $variables['content'][0]['#items'][$item_key]['#title']['#value'] = $rgb_code . ' ' . $color_label;
+    }
+  }
+}
