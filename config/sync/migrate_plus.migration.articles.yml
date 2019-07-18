@@ -1,0 +1,89 @@
+uuid: c3c4c6dd-6248-40a5-ad6b-f016ce6b2e60
+langcode: en
+status: true
+dependencies: {  }
+id: articles
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: hoa
+label: 'Import Articles'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  headers:
+    Content-Type: text/xml
+  urls: 'http://localhost:8888/migration_xmls/articles.xml'
+  data_parser_plugin: simple_xml
+  item_selector: article
+  fields:
+    -
+      name: id
+      label: 'Node Id'
+      selector: id
+    -
+      name: node_title
+      label: 'Node Title'
+      selector: title
+    -
+      name: node_body
+      label: 'Node Body'
+      selector: description
+    -
+      name: tags
+      label: 'Node Tags'
+      selector: tags
+    -
+      name: category
+      label: 'Article Category'
+      selector: categories/category
+    -
+      name: author
+      label: 'Article Author'
+      selector: user
+    -
+      name: created
+      label: 'Created Date'
+      selector: created
+  ids:
+    id:
+      type: string
+process:
+  nid: id
+  title: node_title
+  body/value: node_body
+  body/format:
+    plugin: default_value
+    default_value: full_html
+  field_tags:
+    -
+      plugin: explode
+      source: tags
+      delimiter: ','
+    -
+      plugin: entity_generate
+      field: field_tags
+  field_article_category:
+    -
+      plugin: callback
+      callable: trim
+      source: category
+    -
+      plugin: migration_lookup
+      migration: categories
+      field: field_article_category
+  uid:
+    plugin: migration_lookup
+    migration: users
+    source: author
+  created:
+    plugin: callback
+    callable: strtotime
+    source: created
+  type:
+    plugin: default_value
+    default_value: article
+destination:
+  plugin: 'entity:node'
+migration_dependencies: null

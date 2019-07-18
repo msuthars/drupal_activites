@@ -1,0 +1,10 @@
+uuid: 83191457-2c8d-425f-95c3-2c45870885e8
+langcode: en
+status: true
+dependencies: {  }
+id: hoa
+label: 'Hoa migration'
+description: 'The Hoa migration group.'
+source_type: 'Drupal 7'
+module: null
+shared_configuration: null

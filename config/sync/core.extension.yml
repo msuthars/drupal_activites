@@ -25,6 +25,7 @@ module:
   help: 0
   history: 0
   hoa: 0
+  hoa_migration: 0
   hoa_routing: 0
   image: 0
   jsonapi: 0
@@ -32,6 +33,11 @@ module:
   link: 0
   media: 0
   menu_ui: 0
+  migrate: 0
+  migrate_drupal: 0
+  migrate_drupal_ui: 0
+  migrate_plus: 0
+  migrate_tools: 0
   node: 0
   options: 0
   page_cache: 0
