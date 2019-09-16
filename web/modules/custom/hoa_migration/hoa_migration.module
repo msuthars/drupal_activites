@@ -1,5 +1,5 @@
 <?php
 
-function hoa_migration_migration_plugins_alter(array &$migrations) {
-  dump($migrations);
-}
+//function hoa_migration_migration_plugins_alter(array &$migrations) {
+//  dump($migrations);
+//}
